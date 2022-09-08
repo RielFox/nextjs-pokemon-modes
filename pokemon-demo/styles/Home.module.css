@@ -1,0 +1,16 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, auto); /* 4 column layout with a little gap in-between for home page pokemon display */
+  grid-gap: 2vw;
+  margin: 2vw 2vw 2vw 2vw;
+}
+
+.card img {
+  max-height: 200px;
+  display:block;
+  margin:auto;
+}
+
+.card h3 {
+  text-align: center;
+}

@@ -34,3 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# sensitive information - API key
+/public/scripts
+/public/scripts/fetch_pokemon.js

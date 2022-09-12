@@ -48,7 +48,14 @@ export async function getStaticProps( { params } ) {
     const res = await fetch(`https://t6nnv61cec.execute-api.eu-central-1.amazonaws.com/dev/${params.id}.json`, {
         headers: {
           'Content-Type': 'application/json',
-        } 
+        },
+        // Say we change the json file(s) for one or some of the pokemon after building the SSG
+        // Static pages wont be updated with fresh data (e.g. if the json it got the data from changes)
+        // The data will remain 'frozen' as it was when the Statically Generated Site was built and that data was fetched
+        // This will revalidate every 30 seconds
+        // This means that anytime that route gets hit it will go and actually make the update to the page if it hasn't done that update withint he last 30 seconds (in this case)
+        // This is basically a throttle, meaning you will update that page but only every 30 seconds (you pick that time interval)
+        revalidate: 30
     })
 
     return {

@@ -1,0 +1,32 @@
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    column-gap: 1rem;
+}
+
+/* Pokemon name styling */
+.name {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Pokemon type styling */
+.type {
+    font-size: italic;
+    margin-bottom: 0.5rem;
+}
+
+/* For table */
+.heading {
+    font-weight: bold;
+}
+
+.attribute {
+    font-weight: bold;
+}
+
+/* For Pokemon picture */
+.picture {
+    max-height: 400px;
+}

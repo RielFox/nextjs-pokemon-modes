@@ -49,13 +49,24 @@ export async function getStaticProps( { params } ) {
         headers: {
           'Content-Type': 'application/json',
         },
+        // -- Revalidation --
         // Say we change the json file(s) for one or some of the pokemon after building the SSG
         // Static pages wont be updated with fresh data (e.g. if the json it got the data from changes)
         // The data will remain 'frozen' as it was when the Statically Generated Site was built and that data was fetched
         // This will revalidate every 30 seconds
         // This means that anytime that route gets hit it will go and actually make the update to the page if it hasn't done that update withint he last 30 seconds (in this case)
         // This is basically a throttle, meaning you will update that page but only every 30 seconds (you pick that time interval)
-        revalidate: 30
+        // Every 30 seconds, checks if changes have been made and reflects them on the static page
+        // This is nice if you have a high-traffic page where the 'serious' contents of that page won't change that often
+        // (e.g. an e-commerce application - product detail page or home page, reviews, comments - 
+        // you don't want them updating with every single request - won't change that often, can wait a bit to be refreshed)
+        // This gives you the ability to revalidate that page - but throttled (at the level you want)
+        // revalidate: 30 //(disabled since using forced revalidation)
+        
+        // -- Forced Revalidation --
+        // What happens when you want to force the page to revalidate
+        // e.g. I have an update, I want to revalidate right now
+        // Defined in /api/revalidate.js
     })
 
     return {
